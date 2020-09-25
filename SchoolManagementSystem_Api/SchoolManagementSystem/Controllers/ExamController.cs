@@ -16,12 +16,12 @@ namespace SchoolManagementSystem.Controllers
     {
         private readonly IExamMarkRepository _examMarkRepo;
         private readonly IExamResultRepository _examResutlRepo;
-        private readonly ApplicationDbContext _context;
-        public ExamController(IExamMarkRepository examMarkRepo, IExamResultRepository examResutlRepo, ApplicationDbContext context)
+       
+        public ExamController(IExamMarkRepository examMarkRepo, IExamResultRepository examResutlRepo)
         {
             _examMarkRepo = examMarkRepo;
             _examResutlRepo = examResutlRepo;
-            _context = context;
+           
         }
         [HttpGet]
         [Route("{examId,studentId}")]
@@ -29,7 +29,7 @@ namespace SchoolManagementSystem.Controllers
         {
             try
             {
-                var Result = _examMarkRepo.GetAllExamMarkOfStudent( examId, studentId);
+                var Result = _examMarkRepo.GetAllExamMarkOfStudent(examId, studentId);
 
                 if (Result == null)
                 {

@@ -114,28 +114,28 @@ go
 --10
 SET IDENTITY_INSERT [dbo].[SchoolClass] ON 
 
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (1, N'One')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (2, N'Two')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (3, N'Three')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (4, N'Four')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (5, N'Five')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (6, N'Six')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (7, N'Seven')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (8, N'Eight')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (9, N'Nine')
-INSERT [dbo].[SchoolClass] ([Id], [ClassName]) VALUES (10, N'Ten')
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (1, N'One', 3)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (2, N'Two', 3)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (3, N'Three', 6)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (4, N'Four', 6)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (5, N'Five', 6)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (6, N'Six', 10)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (7, N'Seven', 10)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (8, N'Eight', 10)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (9, N'Nine', 13)
+INSERT [dbo].[SchoolClass] ([Id], [ClassName], [NumberOfSubject]) VALUES (10, N'Ten', 13)
 SET IDENTITY_INSERT [dbo].[SchoolClass] OFF
 go
 --11
 SET IDENTITY_INSERT [dbo].[Shift] ON 
 
-INSERT [dbo].[Shift] ([Id], [ShiftName]) VALUES (1, N'Morning')
-INSERT [dbo].[Shift] ([Id], [ShiftName]) VALUES (2, N'Day')
-INSERT [dbo].[Shift] ([Id], [ShiftName]) VALUES (3, N'Evening')
+INSERT [dbo].[Shift] ([Id], [ShiftName], [StartTime], [EndTime]) VALUES (1, N'Morning', CAST(N'08:00:00' AS Time), CAST(N'12:00:00' AS Time))
+INSERT [dbo].[Shift] ([Id], [ShiftName], [StartTime], [EndTime]) VALUES (2, N'Day', CAST(N'13:00:00' AS Time), CAST(N'17:00:00' AS Time))
+INSERT [dbo].[Shift] ([Id], [ShiftName], [StartTime], [EndTime]) VALUES (3, N'Evening', CAST(N'18:00:00' AS Time), CAST(N'22:00:00' AS Time))
 SET IDENTITY_INSERT [dbo].[Shift] OFF
 go
 
---13
+--12
 
 SET IDENTITY_INSERT [dbo].[BranchClass] ON 
 
@@ -147,7 +147,7 @@ INSERT [dbo].[BranchClass] ([Id], [BranchId], [ShiftId], [SchoolVersionId], [Sch
 INSERT [dbo].[BranchClass] ([Id], [BranchId], [ShiftId], [SchoolVersionId], [SchoolClassId]) VALUES (6, 2, 3, 2, 3)
 SET IDENTITY_INSERT [dbo].[BranchClass] OFF
 GO
---14
+--13
 SET IDENTITY_INSERT [dbo].[Group] ON 
 
 INSERT [dbo].[Group] ([Id], [GroupName]) VALUES (1, N'Business Studies')
@@ -155,7 +155,7 @@ INSERT [dbo].[Group] ([Id], [GroupName]) VALUES (2, N'Science')
 INSERT [dbo].[Group] ([Id], [GroupName]) VALUES (3, N'Humainities')
 SET IDENTITY_INSERT [dbo].[Group] OFF
 go
---15
+--14
 SET IDENTITY_INSERT [dbo].[Section] ON 
 
 INSERT [dbo].[Section] ([Id], [SectionName], [GroupId], [BranchClassId]) VALUES (1, N'A', NULL, 1)
@@ -165,17 +165,17 @@ INSERT [dbo].[Section] ([Id], [SectionName], [GroupId], [BranchClassId]) VALUES 
 INSERT [dbo].[Section] ([Id], [SectionName], [GroupId], [BranchClassId]) VALUES (5, N'C', NULL, 3)
 SET IDENTITY_INSERT [dbo].[Section] OFF
 go
---16
+--15
 SET IDENTITY_INSERT [dbo].[Subject] ON 
 
-INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (1, N'Bangla', N'101', 1, NULL, NULL)
-INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (2, N'English', N'102', 1, NULL, NULL)
-INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (3, N'Math', N'103', 1, NULL, NULL)
-INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (4, N'History', N'150', 2, 3, NULL)
-INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (5, N'Higher Math', N'009', 3, NULL, NULL)
+INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [CanBeOptional], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (1, N'Bangla', N'101', 0, 1, NULL, NULL)
+INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [CanBeOptional], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (2, N'English', N'102', 0,  1, NULL, NULL)
+INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [CanBeOptional], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (3, N'Accounting', N'500', 0, 2, 1, NULL)
+INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [CanBeOptional], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (4, N'History', N'150', 0, 2, 3, NULL)
+INSERT [dbo].[Subject] ([Id], [SubjectName], [SubjectCode], [CanBeOptional], [SchoolClassId], [GroupId], [SchoolVersionId]) VALUES (5, N'Higher Math', N'009', 0, 3, NULL, NULL)
 SET IDENTITY_INSERT [dbo].[Subject] OFF
 go
---17
+--16
 SET IDENTITY_INSERT [dbo].[Designation] ON 
 
 INSERT [dbo].[Designation] ([Id], [DesignationName]) VALUES (1, N'Authority')
@@ -190,7 +190,7 @@ INSERT [dbo].[Designation] ([Id], [DesignationName]) VALUES (9, N'Gard')
 INSERT [dbo].[Designation] ([Id], [DesignationName]) VALUES (10, N'Cleaner')
 SET IDENTITY_INSERT [dbo].[Designation] OFF
 GO
---18
+--17
 SET IDENTITY_INSERT [dbo].[ApplicationForm] ON 
 
 
@@ -198,112 +198,59 @@ INSERT [dbo].[ApplicationForm] ([Id],[ApplicantId],[FirstName],[LastName],[DateO
 INSERT [dbo].[ApplicationForm] ([Id],[ApplicantId],[FirstName],[LastName],[DateOfBirth],[Gender],[Religion],[BirthRegistrationNo],[ImageUrl],[ApplingDate],[FatherName], [FatherOccupation], [FatherPhone], [MotherName], [MotherOccupation], [MotherPhone],[MonthlyFamillyIncome],[FormarSchoolName],[IsSelected], [IsAdmitted], [PresentAddress],[ParmanentAddress],[PostOfficeId],[QuotaId],[BranchClassId]) VALUES (2, 000002, N'Saleha', N'Akter', CAST(N'1997-02-04T00:00:00.0000000' AS DateTime2),  2, 1, N'01245632365',  N'~/images/10.jpg', '2021-01-10',  N'father', N'private', N'0185463126', N'mother', N'Banker', N'019654841', 30000, N'old School',1, 0, N'Comilla', N'Dhaka',  1,  2, 2)
 SET IDENTITY_INSERT [dbo].[ApplicationForm] OFF
 go
---19
+--18
+GO
 SET IDENTITY_INSERT [dbo].[Staff] ON 
 
-INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress],  [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (1, N'Sharmin', N'Akter', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2),  1, 0, N'01854658124', N'sharmi@gmaill.com', N'4652341564', N'~/imgae/01.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mothers', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'dahaka', N'barisal', NULL, 1, 1, 2)
-INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress],  [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (2, N'Rokiya', N'Akter', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2),  1, 0, N'01254521455', N'rokiya@gmail.com', N'6542315841', N'~/images/03.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'fatjer', N'mothre', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'MEGHNA', N'cumilla', NULL, 2, 1, 2)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (1, N'Sharmin', N'Akter', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01854658124', N'sharmi@gmaill.com', N'4652341564', N'~/imgae/01.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mothers', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'dahaka', N'barisal', NULL, 1, 1, 2)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (2, N'Rokiya', N'Akter', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01254521455', N'rokiya@gmail.com', N'6542315841', N'~/images/03.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'fatjer', N'mothre', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'MEGHNA', N'cumilla', NULL, 2, 1, 2)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (4, N'Faruq ', N'Ahmed', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01235647854', N'faruq@gmail.com', N'1245457412', N'~/images/02.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'motehr', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Paltan', N'Gazipur', NULL, 1, 2, 1)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (6, N'Alom', N'Azad', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01245678965', N'alom@gmail.com', N'4124547745', N'~/images/04.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mother', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Kakrail', N'Norail', NULL, 1, 1, 2)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (8, N'Jibon', N'Ahmed', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01245874514', N'jibon@gmail.com', N'4251478541', N'~/images/05.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mother', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Bonani', N'Rongpur', NULL, 2, 2, 1)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (11, N'Ahmed', N'Uddin', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01548452163', N'azad@gmail.com', N'2451474546', N'~/images/06.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mother', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Badda', N'Cumilla', NULL, 2, 2, 1)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (13, N'Zahin', N'Hyder', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01454845213', N'zahin@gmail.com', N'1454845124', N'~/images/07.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mother', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Uttora', N'Munsigong', NULL, 1, 1, 1)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (14, N'Sorif', N'Ullah', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01546455445', N'sorif@gmail.com', N'2457454125', N'~/images/08.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'moter', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Gulsan', N'Chardpur', NULL, 1, 1, 2)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (17, N'Kazi', N'Nazrul', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01245784515', N'kazi@gamil.com', N'6547894521', N'~/images/09.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mother', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Motijil', N'B-Baria', NULL, 2, 2, 2)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (18, N'Yeasin', N'Hossain', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01245789414', N'yeasin@gamil.com', N'4154478554', N'~/images/10.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mother', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Rampura', N'Josore', NULL, 2, 1, 1)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (19, N'Ariful', N'Islam', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01654854521', N'ariful@gmail.com', N'5487545654', N'~/images/11.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'motehr', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Mirpur', N'Syllhet', NULL, 1, 2, 1)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (20, N'Anis', N'Islam', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01354845121', N'anis@gmail.com', N'5478456454', N'~/images/12.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'motehr', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Azimpur', N'Natore', NULL, 2, 1, 2)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (21, N'Nuru', N'Islam', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01542145265', N'nuri@gmail.com', N'4547845554', N'~/images/13.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mother', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Santibug', N'Cumilla', NULL, 2, 1, 2)
+INSERT [dbo].[Staff] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [ImageUrl], [CreatedDate], [FathersName], [MothersName], [MaritalStatus], [IsPresent], [JoiningDate], [ResignDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [BranchId], [DesignationId]) VALUES (22, N'Rabbi', N'Hossain', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 0, N'01245845544', N'rabbi@gmail.com', N'5478985454', N'~/images/14.jpg', CAST(N'2020-01-01T00:00:00.0000000' AS DateTime2), N'father', N'mother', 0, 1, CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Paltan', N'Manikgong', NULL, 1, 1, 1)
 SET IDENTITY_INSERT [dbo].[Staff] OFF
-go
+
 --20
-
-
--- SET IDENTITY_INSERT [dbo].[Student] ON 
-
--- INSERT [dbo].[Student] ([Id], [StudentIdNo],  [RollNo], [FirstName], [LastName], [FullName], [DateOfBirth], [Gender], [Religion], [BirthRegistrationNo], [ImageUrl], [FatherName], [FatherOccupation], [FatherPhone], [MotherName], [MotherOccupation], [MotherPhone], [MonthlyFamillyIncome], [FormarSchoolName],  [GuardianName], [GuardianPhoneNo], [GuardianEmail], [RelationOfAltGuardian], [AdmissionDate], [FingerData], [PresentAddress], [ParmanentAddress], [PostOfficeId], [QuotaId], [SectionId], [BranchClassId]) VALUES (1, N'10000001', 101010, N'Robiul', N'Hossain', N'aaaaaaa', CAST(N'2000-10-04T00:00:00.0000000' AS DateTime2), 0, 0, N'4514215423166', N'~/images/07.jpg', N'Abdul', N'Private Employee', N'01854625441', N'Rehana', N'HouseWife', N'0164250154', 20000, NULL,  N'Abdul', N'0185451445', N'girtian@gmail.com', N'father', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'Dhaka', N'Cumilla', 1, 1, NULL, 1)
--- INSERT [dbo].[Student] ([Id], [StudentIdNo],  [RollNo], [FirstName], [LastName], [FullName], [DateOfBirth], [Gender], [Religion], [BirthRegistrationNo], [ImageUrl], [FatherName], [FatherOccupation], [FatherPhone], [MotherName], [MotherOccupation], [MotherPhone], [MonthlyFamillyIncome], [FormarSchoolName],  [GuardianName], [GuardianPhoneNo], [GuardianEmail], [RelationOfAltGuardian], [AdmissionDate], [FingerData], [PresentAddress], [ParmanentAddress], [PostOfficeId], [QuotaId], [SectionId], [BranchClassId]) VALUES (2, N'10000002', 101210, N'kawser', N'Hossain', N'bbbbbbbbb', CAST(N'2000-10-05T00:00:00.0000000' AS DateTime2), 0, 0, N'4654354165442', N'~/images/08.jpg', N'abul', N'gvt', N'01825434561', N'sultana', N'private', N'0185542544', 30000, N'OLD SCHOOL',  N'SULTAN', N'01698525441', N'sulata@gmail.com', N'mother', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, N'cumilla', N'Noakhali', 2, NULL, 1, 1)
--- SET IDENTITY_INSERT [dbo].[Student] OFF
-
-
-go
---21
-SET IDENTITY_INSERT [dbo].[Teacher] ON 
-
-INSERT [dbo].[Teacher] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [FingerData], [IsPresent], [ImageUrl], [CreatedDate], [MaritalStatus], [FathersName], [MothersName], [JoiningDate], [ResignDate], [BranchId], [DesignationId], [SubjectId], [PostOfficeId]) VALUES (1, N'Teacher1', N'Techar4', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 0, 0, N'0183215245641', N'teavcharft@gmail.com', N'64521654545', NULL, 1, N'!/images/01.jpg', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), 1, N'father', N'motheer', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, 1, 1, 1, 1)
-INSERT [dbo].[Teacher] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [FingerData], [IsPresent], [ImageUrl], [CreatedDate], [MaritalStatus], [FathersName], [MothersName], [JoiningDate], [ResignDate], [BranchId], [DesignationId], [SubjectId], [PostOfficeId]) VALUES (2, N'taechart2', N'kagert', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 1, N'0186341251241', N'sdakj;fj@gmail.colm', N'4465456453', NULL, 0, N'~/IMGAE/01.JPG', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), 1, N'FATJEH', N'M,AOJTGLKS', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, 1, 1, 2, 1)
-SET IDENTITY_INSERT [dbo].[Teacher] OFF
---22
-SET IDENTITY_INSERT [dbo].[ClassRoom] ON 
-
-INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (1, 1, 1, 1, 1)
-INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (2, 1, 2, 1, 2)
-INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (3, 2, 3, 2, 1)
-INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (4, 3, 2, 4, 2)
-INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (5, 6, 5, 3, 1)
-SET IDENTITY_INSERT [dbo].[ClassRoom] OFF
 GO
---23
-SET IDENTITY_INSERT [dbo].[ClassRoutine] ON 
+SET IDENTITY_INSERT [dbo].[StaffTask] ON 
 
-INSERT [dbo].[ClassRoutine] ([Id], [StartTime], [EndTime], [ClassDuration], [PeriodNumber], [SubjectId], [TeacherId], [ClassRoomId], [DayOfWeek]) VALUES (1, CAST(N'08:00:00' AS Time), CAST(N'08:40:00' AS Time), N'40', 1, 1, 1, 1, 3)
-INSERT [dbo].[ClassRoutine] ([Id], [StartTime], [EndTime], [ClassDuration], [PeriodNumber], [SubjectId], [TeacherId], [ClassRoomId], [DayOfWeek]) VALUES (2, CAST(N'08:40:00' AS Time), CAST(N'09:20:00' AS Time), N'40', 2, 2, 2, 2, 3)
-SET IDENTITY_INSERT [dbo].[ClassRoutine] OFF
-go
---24
-SET IDENTITY_INSERT [dbo].[Exam] ON 
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (1, N'Gate Keeper', N'Gate Keeper must check who are come and out into the school gate')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (2, N'ID Card Check ', N'A Checker always check the student id card')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (3, N'Finger Print', N'Ovserve all the students are complete there finger print attendence before specific time')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (4, N'Playing Bell', N'Playing the bell after complated every class')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (5, N'Descipline Check', N'A checker always check a student compltely maintain the desciplines of school')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (6, N'Handover Gardian', N'A checker always handover a student in his/her proper gardian')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (7, N'Notice Carry', N'Carry Important Notices from all class in the school ')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (8, N'Teacher Food / Tea', N'Provide lite food and tea for teachers and guests')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (9, N'Office Work', N'Always support official activites ')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (10, N'Room Clean', N'Clean all the class room in the school')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (11, N'Balcony Clean', N'Clean all the buildings balcony  ')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (12, N'Play Ground Clean', N'Clean play ground in the school')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (13, N'Wash Room Clean', N'Clean Wash Room in the school')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (14, N'Drinking Water', N'Provide fresh drinking water')
+INSERT [dbo].[StaffTask] ([Id], [TaskName], [Description]) VALUES (15, N'Delivery Boy', N'Delivery boy alwasy serve external delivery of school')
+SET IDENTITY_INSERT [dbo].[StaffTask] OFF
 
-INSERT [dbo].[Exam] ([Id], [ExamType], [ExamDiscription], [StartDate], [EndDate], [Duration], [PassingRate], [IsActive], [BranchId]) VALUES (1, N'Half Yearly', N'this is 50 mark & class under 8 ', CAST(N'2020-09-10T00:00:00.0000000' AS DateTime2), CAST(N'2020-10-30T00:00:00.0000000' AS DateTime2), N'3 Hour', 50, 1, 1)
-INSERT [dbo].[Exam] ([Id], [ExamType], [ExamDiscription], [StartDate], [EndDate], [Duration], [PassingRate], [IsActive], [BranchId]) VALUES (2, N'Yearly', N'100 marks', CAST(N'2020-12-01T00:00:00.0000000' AS DateTime2), CAST(N'2020-12-31T00:00:00.0000000' AS DateTime2), N'3 Hour',  40, 1, 1)
-SET IDENTITY_INSERT [dbo].[Exam] OFF
-go
---25
--- SET IDENTITY_INSERT [dbo].[ExamRoutine] ON 
+--21
+GO
+SET IDENTITY_INSERT [dbo].[TaskRoutine] ON 
 
--- INSERT [dbo].[ExamRoutine] ([Id], [ExamDate], [TotalNumber],  [SchoolClassId], [ExamId], [ShiftId], [SubjectId]) VALUES (1, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 100,  1, 1, 2, 1)
--- INSERT [dbo].[ExamRoutine] ([Id], [ExamDate], [TotalNumber],  [SchoolClassId], [ExamId], [ShiftId], [SubjectId]) VALUES (2, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 50,  2, 1, 2, 2)
--- SET IDENTITY_INSERT [dbo].[ExamRoutine] OFF
-go
---26
--- SET IDENTITY_INSERT [dbo].[ExamResult] ON 
+INSERT [dbo].[TaskRoutine] ([Id], [StartDate], [EndDate], [StartTime], [EndTime], [StaffTaskId], [StaffId]) VALUES (1, CAST(N'2021-01-02T00:00:00.0000000' AS DateTime2), CAST(N'2021-01-10T00:00:00.0000000' AS DateTime2), CAST(N'09:30:00' AS Time), CAST(N'04:30:00' AS Time), 1, 1)
+INSERT [dbo].[TaskRoutine] ([Id], [StartDate], [EndDate], [StartTime], [EndTime], [StaffTaskId], [StaffId]) VALUES (2, CAST(N'2021-01-11T00:00:00.0000000' AS DateTime2), CAST(N'2021-01-22T00:00:00.0000000' AS DateTime2), CAST(N'07:00:00' AS Time), CAST(N'12:30:00' AS Time), 2, 2)
+INSERT [dbo].[TaskRoutine] ([Id], [StartDate], [EndDate], [StartTime], [EndTime], [StaffTaskId], [StaffId]) VALUES (3, CAST(N'2021-01-22T00:00:00.0000000' AS DateTime2), CAST(N'2021-02-11T00:00:00.0000000' AS DateTime2), CAST(N'07:00:00' AS Time), CAST(N'12:30:00' AS Time), 3, 1)
+SET IDENTITY_INSERT [dbo].[TaskRoutine] OFF
 
--- INSERT [dbo].[ExamResult] ([Id], [ResultPublishDate], [TotalMark], [TotalObtainMark], [ResultStatus], [GradePoint], [HighestMark], [Position], [TotalPresent], [Note], [ExamId], [SectionId], [StudentId]) VALUES (1,  CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), 100, 95, 1, 5.00, 95, 1, 1,  N'Study More', 1, 1, 1)
--- INSERT [dbo].[ExamResult] ([Id], [ResultPublishDate], [TotalMark], [TotalObtainMark], [ResultStatus], [GradePoint], [HighestMark], [Position], [TotalPresent], [Note], [ExamId], [SectionId], [StudentId]) VALUES (2,  CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), 100, 95, 1, 5.00, 95, 2, 1,  N'rest new',   1, 1, 2 )
--- SET IDENTITY_INSERT [dbo].[ExamResult] OFF
--- go
---27
--- SET IDENTITY_INSERT [dbo].[ExamMark] ON 
+GO
 
--- INSERT [dbo].[ExamMark] ([Id], [ObtainMark], [ResultStatus], [GradePoint], [HighestMark], [Position], [ExamId], [ExamRoutineId], [SubjectId], [StudentId]) VALUES (1, 75, 1, 4.5, 75, 1, 1, 1, 1, 2)
--- INSERT [dbo].[ExamMark] ([Id], [ObtainMark], [ResultStatus], [GradePoint], [HighestMark], [Position], [ExamId], [ExamRoutineId], [SubjectId], [StudentId]) VALUES (2, 63, 1, 3.5, 75, 1, 1, 2, 2, 1)
--- INSERT [dbo].[ExamMark] ([Id], [ObtainMark], [ResultStatus], [GradePoint], [HighestMark], [Position], [ExamId], [ExamRoutineId], [SubjectId], [StudentId]) VALUES (3, 38, 1, 4.0, 38, 1, 1, 2, 3, 2)
--- SET IDENTITY_INSERT [dbo].[ExamMark] OFF
-
-go
---28
-SET IDENTITY_INSERT [dbo].[Event] ON 
-
-INSERT [dbo].[Event] ([Id], [EventName], [StartDate], [EndDate], [EventControlar], [Venue], [ImageUrl], [BranchId]) VALUES (1, N'Orentation', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), N'Khalid', N'Morgipara',  N'~/images/11.jpg', 1)
-INSERT [dbo].[Event] ([Id], [EventName], [StartDate], [EndDate], [EventControlar], [Venue], [ImageUrl], [BranchId]) VALUES (2, N'Farewell', CAST(N'2020-12-31T00:00:00.0000000' AS DateTime2), CAST(N'2020-12-31T00:00:00.0000000' AS DateTime2), N'Jahangir', N'Mawa', N'~/images/12.jpg', 1)
-SET IDENTITY_INSERT [dbo].[Event] OFF
-
-go
---29
-
-SET IDENTITY_INSERT [dbo].[Holiday] ON 
-
-INSERT [dbo].[Holiday] ([Id], [HolidayName], [StartDate], [EndDate], [NumberOfDay]) VALUES (1, N'Summer Session', CAST(N'2021-02-01T00:00:00.0000000' AS DateTime2), CAST(N'2021-02-10T00:00:00.0000000' AS DateTime2), 10)
-INSERT [dbo].[Holiday] ([Id], [HolidayName], [StartDate], [EndDate], [NumberOfDay]) VALUES (2, N'Eid Ul Azha', CAST(N'2020-06-01T00:00:00.0000000' AS DateTime2), CAST(N'2020-06-06T00:00:00.0000000' AS DateTime2), 6)
-SET IDENTITY_INSERT [dbo].[Holiday] OFF
-
-go
---30
-SET IDENTITY_INSERT [dbo].[RulesRegulation] ON 
-
-INSERT [dbo].[RulesRegulation] ([Id], [RuleDetails], [BranchId]) VALUES (1, N'Must be use Unifrom. Attend Correct Time', 1)
-INSERT [dbo].[RulesRegulation] ([Id], [RuleDetails], [BranchId]) VALUES (2, N'Must be use Unifrom. Attend Correct Time', 2)
-SET IDENTITY_INSERT [dbo].[RulesRegulation] OFF
-
-go
---31
-go
-SET IDENTITY_INSERT [dbo].[NoticeBoard] ON 
-
-INSERT [dbo].[NoticeBoard] ([Id], [TopicName], [NoticeBody], [PublishDate], [BranchId]) VALUES (1, N'Exam', N'2nd september will held montly Exam', CAST(N'2020-08-31T00:00:00.0000000' AS DateTime2), 1)
-INSERT [dbo].[NoticeBoard] ([Id], [TopicName], [NoticeBody], [PublishDate], [BranchId]) VALUES (2, N'Result', N'Final Result', CAST(N'2020-12-31T00:00:00.0000000' AS DateTime2), 1)
-SET IDENTITY_INSERT [dbo].[NoticeBoard] OFF
-
-
-go
+--22
 
 SET IDENTITY_INSERT [dbo].[Student] ON 
 
@@ -319,51 +266,47 @@ INSERT [dbo].[Student] ([Id], [StudentIdNo], [RollNo], [FirstName], [LastName], 
 INSERT [dbo].[Student] ([Id], [StudentIdNo], [RollNo], [FirstName], [LastName], [FullName], [DateOfBirth], [BirthRegistrationNo], [Gender], [Religion], [BloodGroup], [ImageUrl], [FatherName], [FatherOccupation], [FatherPhone], [MotherName], [MotherOccupation], [MotherPhone], [MonthlyFamillyIncome], [FormarSchoolName], [GuardianName], [GuardianPhoneNo], [GuardianEmail], [RelationOfAltGuardian], [AdmissionDate], [PresentAddress], [ParmanentAddress], [FingerData], [PostOfficeId], [QuotaId], [SectionId], [BranchClassId]) VALUES (10, N'10000010', 101219, N'kawser9', N'Hossain', N'bbbbbbbbb', CAST(N'2000-10-05T00:00:00.0000000' AS DateTime2), N'4654354165442', 0, 0, NULL, N'~/images/08.jpg', N'abul', N'gvt', N'01825434561', N'sultana', N'private', N'0185542544', 30000, N'OLD SCHOOL', N'SULTAN', N'01698525441', N'sulata@gmail.com', N'mother', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), N'cumilla', N'Noakhali', NULL, 2, NULL, 2, 1)
 SET IDENTITY_INSERT [dbo].[Student] OFF
 
-GO 
+go
+--23
+SET IDENTITY_INSERT [dbo].[Teacher] ON 
+
+INSERT [dbo].[Teacher] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [FingerData], [IsPresent], [ImageUrl], [CreatedDate], [MaritalStatus], [FathersName], [MothersName], [JoiningDate], [ResignDate], [BranchId], [DesignationId],  [PostOfficeId]) VALUES (1, N'Teacher1', N'Techar4', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 0, 0, N'0183215245641', N'teavcharft@gmail.com', N'64521654545', NULL, 1, N'!/images/01.jpg', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), 1, N'father', N'motheer', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, 1, 1, 1)
+INSERT [dbo].[Teacher] ([Id], [FirstName], [LastName], [DateOfBirth], [Gender], [Religion], [PhoneNo], [Email], [NationalIdNo], [FingerData], [IsPresent], [ImageUrl], [CreatedDate], [MaritalStatus], [FathersName], [MothersName], [JoiningDate], [ResignDate], [BranchId], [DesignationId],  [PostOfficeId]) VALUES (2, N'taechart2', N'kagert', CAST(N'2000-01-01T00:00:00.0000000' AS DateTime2), 1, 1, N'0186341251241', N'sdakj;fj@gmail.colm', N'4465456453', NULL, 0, N'~/IMGAE/01.JPG', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), 1, N'FATJEH', N'M,AOJTGLKS', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), NULL, 1, 1, 1)
+SET IDENTITY_INSERT [dbo].[Teacher] OFF
+--24
+SET IDENTITY_INSERT [dbo].[ClassRoom] ON 
+
+INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (1, 1, 1, 1, 1)
+INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (2, 1, 2, 1, 2)
+INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (3, 2, 3, 2, 1)
+INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (4, 3, 2, 4, 2)
+INSERT [dbo].[ClassRoom] ([Id], [BranchClassId], [RoomId], [SectionId], [TeacherId]) VALUES (5, 6, 5, 3, 1)
+SET IDENTITY_INSERT [dbo].[ClassRoom] OFF
+GO
+--25
+SET IDENTITY_INSERT [dbo].[ClassRoutine] ON 
+
+INSERT [dbo].[ClassRoutine] ([Id], [StartTime], [EndTime], [ClassDuration], [PeriodNumber], [SubjectId], [TeacherId], [ClassRoomId], [DayOfWeek]) VALUES (1, CAST(N'08:00:00' AS Time), CAST(N'08:40:00' AS Time), N'40', 1, 1, 1, 1, 3)
+INSERT [dbo].[ClassRoutine] ([Id], [StartTime], [EndTime], [ClassDuration], [PeriodNumber], [SubjectId], [TeacherId], [ClassRoomId], [DayOfWeek]) VALUES (2, CAST(N'08:40:00' AS Time), CAST(N'09:20:00' AS Time), N'40', 2, 2, 2, 2, 3)
+SET IDENTITY_INSERT [dbo].[ClassRoutine] OFF
+go
+--26
+SET IDENTITY_INSERT [dbo].[Exam] ON 
+
+INSERT [dbo].[Exam] ([Id], [ExamType], [ExamDiscription], [StartDate], [EndDate],  [PassingRate], [IsActive], [BranchId]) VALUES (1, N'Half Yearly', N'this is 50 mark & class under 8 ', CAST(N'2020-09-10T00:00:00.0000000' AS DateTime2), CAST(N'2020-10-30T00:00:00.0000000' AS DateTime2),  50, 1, 1)
+INSERT [dbo].[Exam] ([Id], [ExamType], [ExamDiscription], [StartDate], [EndDate],  [PassingRate], [IsActive], [BranchId]) VALUES (2, N'Yearly', N'100 marks', CAST(N'2020-12-01T00:00:00.0000000' AS DateTime2), CAST(N'2020-12-31T00:00:00.0000000' AS DateTime2),   40, 1, 1)
+SET IDENTITY_INSERT [dbo].[Exam] OFF
+
+go
+--27
 SET IDENTITY_INSERT [dbo].[ExamRoutine] ON 
 
-INSERT [dbo].[ExamRoutine] ([Id], [ExamDate], [TotalNumber], [SchoolClassId], [ExamId], [ShiftId], [SubjectId]) VALUES (1, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 100, 1, 1, 1, 1)
-INSERT [dbo].[ExamRoutine] ([Id], [ExamDate], [TotalNumber], [SchoolClassId], [ExamId], [ShiftId], [SubjectId]) VALUES (2, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 100, 1, 1, 1, 2)
-INSERT [dbo].[ExamRoutine] ([Id], [ExamDate], [TotalNumber], [SchoolClassId], [ExamId], [ShiftId], [SubjectId]) VALUES (3, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 100, 1, 1, 1, 3)
+INSERT [dbo].[ExamRoutine] ([Id], [ExamDate], [StartTime], [EndTime], [Duration], [TotalNumber], [SchoolClassId], [ExamId], [ShiftId], [SubjectId]) VALUES (1, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'08:00:00' AS Time), CAST(N'08:40:00' AS Time), N'3 Hour', 100, 1, 1, 1, 1)
+INSERT [dbo].[ExamRoutine] ([Id], [ExamDate], [StartTime], [EndTime], [Duration], [TotalNumber], [SchoolClassId], [ExamId], [ShiftId], [SubjectId]) VALUES (2, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'08:00:00' AS Time), CAST(N'08:40:00' AS Time), N'3 Hour', 100, 1, 1, 1, 2)
+INSERT [dbo].[ExamRoutine] ([Id], [ExamDate], [StartTime], [EndTime], [Duration], [TotalNumber], [SchoolClassId], [ExamId], [ShiftId], [SubjectId]) VALUES (3, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'08:00:00' AS Time), CAST(N'08:40:00' AS Time), N'3 Hour', 100, 1, 1, 1, 3)
 SET IDENTITY_INSERT [dbo].[ExamRoutine] OFF
 GO
-
-go
-SET IDENTITY_INSERT [dbo].[AttendanceOfStudent] ON 
-
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (1, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 1)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (2, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 2)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (3, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 3)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (4, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 4)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (5, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 5)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (6, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 6)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (7, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 7)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (8, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 8)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (9, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 9)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (10, CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-03T00:00:00.0000000' AS DateTime2), 10)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (11, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 1)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (12, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 2)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (13, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 3)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (14, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 4)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (15, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 5)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (16, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 6)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (17, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 7)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (18, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 8)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (19, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 9)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (20, CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-04T00:00:00.0000000' AS DateTime2), 10)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (21, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 1)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (22, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 2)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (23, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 3)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (24, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 4)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (25, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 5)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (26, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 6)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (27, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 7)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (28, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 8)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (29, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 9)
-INSERT [dbo].[AttendanceOfStudent] ([Id], [AttendTime], [LeaveTime], [StudentId]) VALUES (30, CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), CAST(N'2020-09-05T00:00:00.0000000' AS DateTime2), 10)
-SET IDENTITY_INSERT [dbo].[AttendanceOfStudent] OFF
-go
-
+--28
 GO
 SET IDENTITY_INSERT [dbo].[ExamResultPoint] ON 
 
@@ -378,7 +321,7 @@ SET IDENTITY_INSERT [dbo].[ExamResultPoint] OFF
 
 GO
 
-
+--29
 SET IDENTITY_INSERT [dbo].[ExamMark] ON 
 
 INSERT [dbo].[ExamMark] ([Id], [ObtainMark], [ResultStatus], [Point], [Grade], [HighestMark], [Position], [ExamId], [ExamRoutineId], [StudentId]) VALUES (1, 62, 1, 3.5, N'A-', 86, 3, 1, 1, 1)
@@ -412,6 +355,8 @@ INSERT [dbo].[ExamMark] ([Id], [ObtainMark], [ResultStatus], [Point], [Grade], [
 INSERT [dbo].[ExamMark] ([Id], [ObtainMark], [ResultStatus], [Point], [Grade], [HighestMark], [Position], [ExamId], [ExamRoutineId], [StudentId]) VALUES (29, 78, 1, 4, N'A-', 96, 3, 1, 3, 9)
 INSERT [dbo].[ExamMark] ([Id], [ObtainMark], [ResultStatus], [Point], [Grade], [HighestMark], [Position], [ExamId], [ExamRoutineId], [StudentId]) VALUES (30, 78, 1, 4, N'A-', 96, 2, 1, 3, 10)
 SET IDENTITY_INSERT [dbo].[ExamMark] OFF
+
+--30
 go
 SET IDENTITY_INSERT [dbo].[ExamResult] ON 
 
@@ -421,3 +366,74 @@ INSERT [dbo].[ExamResult] ([Id], [ResultPublishDate], [TotalMark], [TotalObtainM
 INSERT [dbo].[ExamResult] ([Id], [ResultPublishDate], [TotalMark], [TotalObtainMark], [ResultStatus], [Point], [Grade], [HighestMark], [Position], [TotalPresent], [Note], [ExamId], [SectionId], [StudentId]) VALUES (4, CAST(N'2020-09-20T20:18:49.3359786' AS DateTime2), 300, 181, 0, 0, N'F', 232, 5, 3, N'Your Result is very bed. For Continue class your gardian must be Communicate with school Authority.', 1, 1, 4)
 INSERT [dbo].[ExamResult] ([Id], [ResultPublishDate], [TotalMark], [TotalObtainMark], [ResultStatus], [Point], [Grade], [HighestMark], [Position], [TotalPresent], [Note], [ExamId], [SectionId], [StudentId]) VALUES (5, CAST(N'2020-09-20T20:18:49.3455754' AS DateTime2), 300, 181, 0, 0, N'F', 232, 4, 3, N'Your Result is very bed. For Continue class your gardian must be Communicate with school Authority.', 1, 1, 5)
 SET IDENTITY_INSERT [dbo].[ExamResult] OFF
+go
+--31
+SET IDENTITY_INSERT [dbo].[Event] ON 
+
+INSERT [dbo].[Event] ([Id], [EventName], [StartDate], [EndDate], [EventControlar], [Venue], [ImageUrl], [BranchId]) VALUES (1, N'Orentation', CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), CAST(N'2021-01-01T00:00:00.0000000' AS DateTime2), N'Khalid', N'Morgipara',  N'~/images/11.jpg', 1)
+INSERT [dbo].[Event] ([Id], [EventName], [StartDate], [EndDate], [EventControlar], [Venue], [ImageUrl], [BranchId]) VALUES (2, N'Farewell', CAST(N'2020-12-31T00:00:00.0000000' AS DateTime2), CAST(N'2020-12-31T00:00:00.0000000' AS DateTime2), N'Jahangir', N'Mawa', N'~/images/12.jpg', 1)
+SET IDENTITY_INSERT [dbo].[Event] OFF
+
+go
+--32
+
+SET IDENTITY_INSERT [dbo].[Holiday] ON 
+
+INSERT [dbo].[Holiday] ([Id], [HolidayName], [StartDate], [EndDate], [NumberOfDay]) VALUES (1, N'Summer Session', CAST(N'2021-02-01T00:00:00.0000000' AS DateTime2), CAST(N'2021-02-10T00:00:00.0000000' AS DateTime2), 10)
+INSERT [dbo].[Holiday] ([Id], [HolidayName], [StartDate], [EndDate], [NumberOfDay]) VALUES (2, N'Eid Ul Azha', CAST(N'2020-06-01T00:00:00.0000000' AS DateTime2), CAST(N'2020-06-06T00:00:00.0000000' AS DateTime2), 6)
+SET IDENTITY_INSERT [dbo].[Holiday] OFF
+
+go
+--33
+SET IDENTITY_INSERT [dbo].[RulesRegulation] ON 
+
+INSERT [dbo].[RulesRegulation] ([Id], [RuleDetails], [BranchId]) VALUES (1, N'Must be use Unifrom. Attend Correct Time', 1)
+INSERT [dbo].[RulesRegulation] ([Id], [RuleDetails], [BranchId]) VALUES (2, N'Must be use Unifrom. Attend Correct Time', 2)
+SET IDENTITY_INSERT [dbo].[RulesRegulation] OFF
+
+go
+--34
+SET IDENTITY_INSERT [dbo].[NoticeBoard] ON 
+
+INSERT [dbo].[NoticeBoard] ([Id], [TopicName], [NoticeBody], [PublishDate], [BranchId]) VALUES (1, N'Exam', N'2nd september will held montly Exam', CAST(N'2020-08-31T00:00:00.0000000' AS DateTime2), 1)
+INSERT [dbo].[NoticeBoard] ([Id], [TopicName], [NoticeBody], [PublishDate], [BranchId]) VALUES (2, N'Result', N'Final Result', CAST(N'2020-12-31T00:00:00.0000000' AS DateTime2), 1)
+SET IDENTITY_INSERT [dbo].[NoticeBoard] OFF
+
+--35
+GO
+SET IDENTITY_INSERT [dbo].[RoutineCondition] ON 
+
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (1, N'Period Number For Full Day', N'7')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (2, N'Weekly Working Day', N'6')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (3, N'Weekly Half Day Number', N'1')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (4, N'Period Number For Half Day', N'4')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (5, N'Tiffin Time In Munite', N'30')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (6, N'Maximum Class Duration', N'45')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (7, N'Minimum Class Duration', N'30')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (8, N'Subjcet Repat Per Day', N'0')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (9, N'Minimum Class For Subject Per Week', N'3')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (10, N'Maximum Class For Subject Per Week', N'6')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (11, N'Maximum First Class Per Teacher', N'1')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (12, N'Maximum Class Per Day For Teacher', N'5')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (13, N'Minimum Class Per Day For Teacher', N'3')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (14, N'Maximun Class Per Week For Teacher', N'25')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (15, N'Minimun Class Per Week For Teacher', N'24')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (16, N'Subject Can First Class Per Week', N'2')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (17, N'Maximum Gap Between Period per Teacher', N'2')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (18, N'Teacher Class In Same Section', N'2')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (19, N'A Teacher Can Maximum Class Teacher', N'2')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (20, N'Total Class In Monrh Per Teacher', N'80')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (21, N'Total Class In Year Per Teacher', N'800')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (22, N'Maximum Exam Gap', N'2')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (23, N'Maximum Exam Mark', N'100')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (24, N'Minimum Exam Mark', N'20')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (25, N'Subject Repat Per Exam', N'0')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (26, N'Tiffin Period Number', N'5')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (27, N'PT Time In Munite', N'15')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (28, N'One Day Per Class Maximum Exam', N'15')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (29, N'Maximum Class Exam In Same Time', N'4')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (30, N'Total Monthly Exam Per Year', N'4')
+INSERT [dbo].[RoutineCondition] ([Id], [Name], [Value]) VALUES (31, N'Total Semister Exam Per Year', N'2')
+SET IDENTITY_INSERT [dbo].[RoutineCondition] OFF
+
+go

@@ -85,19 +85,29 @@ namespace SchoolManagementSystem
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            //Zulhas
+            services.AddScoped(typeof(IShiftRepository), typeof(ShiftRepository));
+            services.AddScoped(typeof(ISchoolClassRepository), typeof(SchoolClassRepository));
+            services.AddScoped(typeof(ISchoolVersionRepository), typeof(SchoolVersionRepository));
+            services.AddScoped(typeof(ISectionRepository), typeof(SectionRepository));
+            services.AddScoped(typeof(IRoomRepository), typeof(RoomRepository));
+
+            //Robiul
+            services.AddScoped(typeof(IExamRepository), typeof(ExamRepository));
+            services.AddScoped(typeof(IExamRoutineRepository), typeof(ExamRoutineRepository));
+            services.AddScoped(typeof(IExamResultRepository), typeof(ExamResultRepository));
+            services.AddScoped(typeof(IExamMarkRepository), typeof(ExamMarkRepository));
+            services.AddScoped(typeof(IExamResultPointRepository), typeof(ExamResultPointRepository));
+
             services.AddScoped(typeof(IStudentRepository), typeof(StudentRepository));
             services.AddScoped(typeof(IDesignationRepository), typeof(DesignationRepository));
             services.AddScoped(typeof(IBranchRepository), typeof(BranchRepository));
 
             services.AddScoped(typeof(IStaffRepository), typeof(StaffRepository));
-            
-
             services.AddScoped(typeof(IQuotaRepository), typeof(QuotaRepository));
-
             services.AddScoped(typeof(IApplicationFormRepository), typeof(ApplicationFormRepository));
 
             services.AddScoped(typeof(IBranchClassRepository), typeof(BranchClassRepository));
-            
             services.AddScoped(typeof(ISubjectRepository), typeof(SubjectRepository));
             services.AddScoped(typeof(IGroupRepository), typeof(GroupRepository));
 
@@ -106,21 +116,8 @@ namespace SchoolManagementSystem
             services.AddScoped(typeof(ITeacherRepository), typeof(TeacherRepository));
 
 
-
             services.AddScoped(typeof(ICountryRepository), typeof(CountryRepository));
             services.AddScoped(typeof(INoticeBoardRepository), typeof(NoticeBoardRepository));
-            //Robiul
-            services.AddScoped(typeof(IExamRepository), typeof(ExamRepository));
-            services.AddScoped(typeof(IExamRoutineRepository), typeof(ExamRoutineRepository));
-            services.AddScoped(typeof(IExamResultRepository), typeof(ExamResultRepository));
-            services.AddScoped(typeof(IExamMarkRepository), typeof(ExamMarkRepository));
-            services.AddScoped(typeof(IExamResultPointRepository), typeof(ExamResultPointRepository));
-            //Zulhas
-            services.AddScoped(typeof(IShiftRepository), typeof(ShiftRepository));
-            services.AddScoped(typeof(ISchoolClassRepository), typeof(SchoolClassRepository));
-            services.AddScoped(typeof(ISchoolVersionRepository), typeof(SchoolVersionRepository));
-            services.AddScoped(typeof(ISectionRepository), typeof(SectionRepository));
-            services.AddScoped(typeof(IRoomRepository), typeof(RoomRepository));
 
             services.AddScoped(typeof(IRulesRegulationRepository), typeof(RulesRegulationRepository));
             services.AddScoped(typeof(IPoliceStationRepository), typeof(PoliceStationRepository));

@@ -19,11 +19,11 @@ namespace SchoolManagementSystem.Controllers
         private readonly IRoomRepository _roomRepo;
         private readonly ISectionRepository _sectionRepo;
 
-        public ClassController(ISubjectRepository subjectRepo, IClassRoomRepository cRoom, 
-                              IShiftRepository shiftRepo,ISchoolClassRepository schoolClassRepo,
-                              ISchoolVersionRepository schoolVersionRepository ,
-                              IRoomRepository roomRepo,
-                              ISectionRepository sectionRepo)
+        public ClassController( IShiftRepository shiftRepo,
+                                ISchoolClassRepository schoolClassRepo,
+                                ISchoolVersionRepository schoolVersionRepository ,
+                                IRoomRepository roomRepo,
+                                ISectionRepository sectionRepo)
         {
             _shiftRepo = shiftRepo;
             _schoolVersionRepository = schoolVersionRepository;
@@ -64,6 +64,7 @@ namespace SchoolManagementSystem.Controllers
             return sh;
         }
         [HttpDelete]
+        [Route("{id}")]
         public ActionResult<Shift> DeleteShift(int id)
         {
             var shift = _shiftRepo.DeleteShift(id);
@@ -109,6 +110,7 @@ namespace SchoolManagementSystem.Controllers
             return shv;
         }
         [HttpDelete]
+        [Route("{id}")]
         public ActionResult<SchoolVersion> DeleteSchoolVersion(int id)
         {
             var schv = _schoolVersionRepository.DeleteSchoolVersion(id);
@@ -154,6 +156,7 @@ namespace SchoolManagementSystem.Controllers
             return sc;
         }
         [HttpDelete]
+        [Route("{id}")]
         public ActionResult<SchoolClass> DeleteSchoolClass(int id)
         {
             var sc = _schoolClassRepo.DeleteSchoolClass(id);
@@ -167,6 +170,7 @@ namespace SchoolManagementSystem.Controllers
         // Room Controller ****************//
 
         [HttpGet]
+        [Route("{branchId}")]
         public ActionResult<IEnumerable<Room>> GetAllRoomByBranch(int branchId)
         {
             var rrr = _roomRepo.GetAllRoom(branchId).ToList();
@@ -222,6 +226,7 @@ namespace SchoolManagementSystem.Controllers
         }
 
         [HttpDelete]
+        [Route("{id}")]
         public ActionResult<Room> DeleteRoom(int id)
         {
             var sc = _roomRepo.DeleteRoom(id);
@@ -236,6 +241,7 @@ namespace SchoolManagementSystem.Controllers
         // Section Controller ****************//
 
         [HttpGet]
+        [Route("{branchId}")]
         public ActionResult<IEnumerable<Section>> GetAllSection(int branchId)
         {
             var rrr = _sectionRepo.GetAllSection(branchId).ToList();
@@ -247,6 +253,7 @@ namespace SchoolManagementSystem.Controllers
         }
 
         [HttpGet]
+        [Route("{branchId}/{classId}")]
         public ActionResult<IEnumerable<Section>> GetAllSectionByClass(int branchId, int classId)
         {
             var rrr = _sectionRepo.GetAllSectionByClass(branchId, classId).ToList();
@@ -258,7 +265,8 @@ namespace SchoolManagementSystem.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Section> GetAllSectionByClass(int id)
+        [Route("{id}")]
+        public ActionResult<Section> GetAllSectionById(int id)
         {
             var rrr = _sectionRepo.GetSection(id); 
             if (rrr == null)
@@ -280,6 +288,7 @@ namespace SchoolManagementSystem.Controllers
         }
 
         [HttpDelete]
+        [Route("{id}")]
         public ActionResult<Section> DeleteSection(int id)
         {
             var sc = _sectionRepo.DeleteSection(id);

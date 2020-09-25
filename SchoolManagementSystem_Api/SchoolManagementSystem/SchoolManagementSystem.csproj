@@ -5,6 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Model\ExamResult\**" />
+    <Content Remove="Model\ExamResult\**" />
+    <EmbeddedResource Remove="Model\ExamResult\**" />
+    <None Remove="Model\ExamResult\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200924175442_Exam-rotine-model-update.cs" />
+    <Compile Remove="Migrations\20200924175442_Exam-rotine-model-update.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
@@ -25,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\ExamResult\" />
+    <Folder Include="Model\Address\" />
   </ItemGroup>
 
 

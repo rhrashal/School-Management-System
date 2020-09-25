@@ -9623,11 +9623,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Robiul\\Desktop\\SchoolManagement\\SchoolManagementSystem\\SchoolManagementSystem.csproj",
+      "projectUniqueName": "C:\\Users\\Robiul\\Desktop\\Project\\SchoolManagement\\SchoolManagementSystem\\SchoolManagementSystem.csproj",
       "projectName": "SchoolManagementSystem",
-      "projectPath": "C:\\Users\\Robiul\\Desktop\\SchoolManagement\\SchoolManagementSystem\\SchoolManagementSystem.csproj",
+      "projectPath": "C:\\Users\\Robiul\\Desktop\\Project\\SchoolManagement\\SchoolManagementSystem\\SchoolManagementSystem.csproj",
       "packagesPath": "C:\\Users\\Robiul\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Robiul\\Desktop\\SchoolManagement\\SchoolManagementSystem\\obj\\",
+      "outputPath": "C:\\Users\\Robiul\\Desktop\\Project\\SchoolManagement\\SchoolManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

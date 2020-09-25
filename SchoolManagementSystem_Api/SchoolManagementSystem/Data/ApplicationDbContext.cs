@@ -105,6 +105,11 @@ namespace SchoolManagementSystem.Data
               .WithMany(a => a.ExamResult)
               .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<StudentSubject>()
+              .HasOne(b => b.Subject)
+              .WithMany(a => a.StudentSubject)
+              .OnDelete(DeleteBehavior.Restrict);
+
         }
 
         public virtual DbSet<ApplicationForm> ApplicationForm { get; set; }
@@ -123,7 +128,6 @@ namespace SchoolManagementSystem.Data
         public virtual DbSet<ExamResult> ExamResult { get; set; }
         public virtual DbSet<ExamRoutine> ExamRoutine { get; set; }
         public virtual DbSet<ExamMark> ExamMark { get; set; }
-        public virtual DbSet<ExamResultPoint> ExamResultPoint { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Holiday> Holiday { get; set; }
         public virtual DbSet<NoticeBoard> NoticeBoard { get; set; }
@@ -138,6 +142,16 @@ namespace SchoolManagementSystem.Data
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Subject> Subject { get; set; }
+
+
+        public virtual DbSet<ExamResultPoint> ExamResultPoint { get; set; }
+        public virtual DbSet<StaffTask> StaffTask { get; set; }
+        public virtual DbSet<TaskRoutine> TaskRoutine { get; set; }
+        public virtual DbSet<StudentSubject> StudentSubject { get; set; }
+        public virtual DbSet<SubjectTeacher> SubjectTeacher { get; set; }
+        public virtual DbSet<RoutineCondition> RoutineCondition { get; set; }
+
+
         public virtual DbSet<AttendanceOfStudent> AttendanceOfStudent { get; set; }
         public virtual DbSet<AttendanceOfTeacher> AttendanceOfTeacher { get; set; }
         public virtual DbSet<AttendanceOfStaff> AttendanceOfStaff { get; set; }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vqkaHqLbyL96EDJrM16lDQ6+ACUYND6Eoc+8jzBzdaC8Z58z/cjoL+pJLvz/CQD8B6TP8aDXZwrvKBeDn866cg==",
+  "dgSpecHash": "RWG0/wDPoFegjw+99qztS+KlcEj3KugVwNVX7w46W9hk35ggo725wWZrfR5eiTe1Ha5DbDodz4THaFn7bw69hg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Robiul\\Desktop\\SchoolManagement\\SchoolManagementSystem\\SchoolManagementSystem.csproj",
+  "projectFilePath": "C:\\Users\\Robiul\\Desktop\\Project\\SchoolManagement\\SchoolManagementSystem\\SchoolManagementSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Robiul\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Robiul\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
