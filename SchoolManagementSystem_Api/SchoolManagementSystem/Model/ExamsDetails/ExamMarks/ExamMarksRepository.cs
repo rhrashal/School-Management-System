@@ -137,9 +137,15 @@ namespace SchoolManagementSystem.Model
                 var student = _context.Student.Where(s => s.Id == examMark.StudentId).FirstOrDefault();
                 if (student != null)
                 {
+                
                     var stClass = _context.BranchClass.Where(b => b.Id == student.BranchClassId).FirstOrDefault();
                     branchId = stClass.BranchId;
-                    if (stClass != null)
+                    
+                    
+                    var studentSubject = _context.StudentSubject.Where(ss => ss.StudentId == student.Id
+                                    && ss.SubjectId == rotine.SubjectId).FirstOrDefault();
+                    
+                    if (stClass != null && studentSubject != null)
                     {
                         var subject = _context.Subject.Where(sb => sb.Id == rotine.SubjectId
                                                             && sb.SchoolClassId == stClass.SchoolClassId).FirstOrDefault();
